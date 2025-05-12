@@ -6,4 +6,4 @@ output/
 /tmp
 logs
 docs
-manifest/
+manifest/config/*
