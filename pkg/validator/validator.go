@@ -1,11 +1,11 @@
 package validator
 
 import (
+	"comment/pkg/validator/i18n"
+	"comment/pkg/validator/register"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/pkg/errors"
 	"reflect"
-	"comment/pkg/validator/i18n"
-	"comment/pkg/validator/register"
 	"strings"
 
 	"github.com/go-playground/validator/v10"

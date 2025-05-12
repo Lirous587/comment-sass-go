@@ -1,6 +1,9 @@
 package httpserver
 
 import (
+	"comment/pkg/config"
+	"comment/pkg/logger"
+	"comment/pkg/repository"
 	"context"
 	"fmt"
 	"github.com/gin-contrib/cors"
@@ -11,9 +14,6 @@ import (
 	"os"
 	"os/exec"
 	"os/signal"
-	"comment/pkg/config"
-	"comment/pkg/logger"
-	"comment/pkg/repository"
 	"syscall"
 	"time"
 )
@@ -28,10 +28,10 @@ func validateConfig(port int) (*config.ServerConfig, bool) {
 }
 
 type Server struct {
-	Router		*gin.Engine
-	config		*config.ServerConfig
-	server		*http.Server
-	stopHandlers	[]func()	// 存储关闭处理函数
+	Router       *gin.Engine
+	config       *config.ServerConfig
+	server       *http.Server
+	stopHandlers []func() // 存储关闭处理函数
 }
 
 func (s *Server) setupCORS() {
@@ -63,11 +63,11 @@ func New(port int) *Server {
 
 	// 创建服务器实例
 	server := &Server{
-		Router:	r,
-		config:	serverConfig,
+		Router: r,
+		config: serverConfig,
 		server: &http.Server{
-			Addr:		fmt.Sprintf(":%d", serverConfig.Port),
-			Handler:	r,
+			Addr:    fmt.Sprintf(":%d", serverConfig.Port),
+			Handler: r,
 		},
 	}
 
@@ -95,8 +95,8 @@ func (s *Server) executeStopHandlers() {
 func (s *Server) Run() {
 	// 创建HTTP服务器
 	s.server = &http.Server{
-		Addr:		fmt.Sprintf(":%d", s.config.Port),
-		Handler:	s.Router,
+		Addr:    fmt.Sprintf(":%d", s.config.Port),
+		Handler: s.Router,
 	}
 
 	// 启动服务器
@@ -169,7 +169,7 @@ func (s *Server) restartServer() {
 
 // 清理资源
 func (s *Server) cleanup() {
-	repository.RedisClose()	// 关闭Redis连接
-	repository.GormClose()	// 关闭数据库连接
+	repository.RedisClose() // 关闭Redis连接
+	repository.GormClose()  // 关闭数据库连接
 	zap.L().Info("所有资源已成功关闭")
 }

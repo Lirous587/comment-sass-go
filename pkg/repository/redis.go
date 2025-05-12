@@ -1,9 +1,9 @@
 package repository
 
 import (
+	"comment/pkg/config"
 	"context"
 	"fmt"
-	"comment/pkg/config"
 	"time"
 
 	"github.com/pkg/errors"
@@ -19,9 +19,9 @@ func RedisInit(cfg *config.RedisConfig) error {
 			cfg.Host,
 			cfg.Port,
 		),
-		Password:	cfg.Password,
-		DB:		cfg.DB,
-		PoolSize:	cfg.PoolSize,
+		Password: cfg.Password,
+		DB:       cfg.DB,
+		PoolSize: cfg.PoolSize,
 	})
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)

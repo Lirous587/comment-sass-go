@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"fmt"
 	"comment/pkg/config"
+	"fmt"
 	"time"
 
 	"github.com/pkg/errors"
@@ -46,11 +46,11 @@ func GormInit(cfg *config.DBConfig) error {
 	}
 
 	gormConfig := &gorm.Config{
-		PrepareStmt:	true,
-		Logger:		logger.Default.LogMode(getLogLevel(cfg.LogLevel)),
+		PrepareStmt: true,
+		Logger:      logger.Default.LogMode(getLogLevel(cfg.LogLevel)),
 		// 添加额外配置
 		NamingStrategy: schema.NamingStrategy{
-			SingularTable: true,	// 使用单数表名
+			SingularTable: true, // 使用单数表名
 		},
 	}
 

@@ -1,18 +1,18 @@
 package middleware
 
 import (
-	"errors"
 	"comment/internal/domain/admin/model"
 	"comment/pkg/jwt"
 	"comment/pkg/response"
+	"errors"
 	"strings"
 
 	"github.com/gin-gonic/gin"
 )
 
 const (
-	authHeaderKey	= "Authorization"
-	bearerPrefix	= "Bearer "
+	authHeaderKey = "Authorization"
+	bearerPrefix  = "Bearer "
 )
 
 // 解析 Authorization 头部的 Token

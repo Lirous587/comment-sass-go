@@ -1,22 +1,22 @@
 package response
 
 import (
-	"net/http"
 	"comment/pkg/validator"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
 type response struct {
-	Code	code		`json:"code"`
-	Message	string		`json:"msg"`
-	Data	interface{}	`json:"data,omitempty"`
+	Code    code        `json:"code"`
+	Message string      `json:"msg"`
+	Data    interface{} `json:"data,omitempty"`
 }
 
 func Success(ctx *gin.Context, data ...any) {
 	res := response{
-		Code:		codeSuccess,
-		Message:	"请求成功",
+		Code:    codeSuccess,
+		Message: "请求成功",
 	}
 	if len(data) > 0 {
 		res.Data = data[0]
@@ -26,8 +26,8 @@ func Success(ctx *gin.Context, data ...any) {
 
 func ErrorParameterInvalid(ctx *gin.Context, err error) {
 	res := response{
-		Code:		codeParamInvalid,
-		Message:	"参数无效",
+		Code:    codeParamInvalid,
+		Message: "参数无效",
 	}
 	lang := validator.GetTranslateLang(ctx)
 	transErr := validator.TranslateError(err, lang)

@@ -1,9 +1,9 @@
 package logger
 
 import (
+	"comment/pkg/config"
 	"errors"
 	"os"
-	"comment/pkg/config"
 	"time"
 
 	"github.com/natefinch/lumberjack"
@@ -65,10 +65,10 @@ func customTimeEncoder(t time.Time, enc zapcore.PrimitiveArrayEncoder) {
 
 func getLogWriter(filename string, maxSize, maxBackup, maxAge int) zapcore.WriteSyncer {
 	lumberJackLogger := &lumberjack.Logger{
-		Filename:	filename,
-		MaxSize:	maxSize,
-		MaxBackups:	maxBackup,
-		MaxAge:		maxAge,
+		Filename:   filename,
+		MaxSize:    maxSize,
+		MaxBackups: maxBackup,
+		MaxAge:     maxAge,
 	}
 
 	// 添加文件写入器

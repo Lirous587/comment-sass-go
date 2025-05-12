@@ -1,13 +1,13 @@
 package main
 
 import (
-	"log"
 	"comment/internal/cmd"
 	"comment/pkg/config"
 	"comment/pkg/email"
 	"comment/pkg/logger"
 	"comment/pkg/repository"
 	"comment/pkg/validator"
+	"log"
 
 	"github.com/pkg/errors"
 )

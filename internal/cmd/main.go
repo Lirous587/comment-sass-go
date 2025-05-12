@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"comment/internal/domain/admin"
+	"comment/internal/domain/user"
 	"comment/pkg/httpserver"
 )
 
@@ -15,15 +15,8 @@ func Main() {
 
 	var err error
 
-	if err = admin.InitV1(api); err != nil {
+	if err = user.InitV1(api); err != nil {
 		panic(err)
-	}
-	{
-		adminWorker := admin.InitWorker()
-		adminWorker.Start()
-		s.RegisterStopHandler(func() {
-			adminWorker.Stop()
-		})
 	}
 
 	s.Run()
